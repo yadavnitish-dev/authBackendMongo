@@ -7,12 +7,12 @@ dotenv.config();
 
 const db = () => {
   mongoose
-    .connect(process.env.MONGO_URL)
+    .connect(process.env.MONGO_URI)
     .then(() => {
       console.log("connected to mongodb");
     })
     .catch((err) => {
-      console.log("Error connecting to mongodb");
+      console.log(`Error connecting to mongodb , ${err}`);
     });
 };
 
