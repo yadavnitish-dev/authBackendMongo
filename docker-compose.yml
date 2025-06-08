@@ -1,0 +1,22 @@
+services : 
+  mongo: 
+   image: mongo:latest
+   container_name : mongo-container
+   ports: 
+    - "27017:27017"
+   volumes: 
+   - mongo-data:/data/db
+
+  app:
+   build: .
+   container_name : my-auth-app
+   ports: 
+    - "3000:3000"
+   environment:
+   - MONGO_URI = mongodb://mongo:27017/auth
+   - PORT = 3000
+   depends_on:
+   - mongo
+
+volumes: 
+  mongo-data:
